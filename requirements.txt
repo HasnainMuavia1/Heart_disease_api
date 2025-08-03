@@ -4,3 +4,6 @@ numpy
 matplotlib
 pillow
 h5py
+fastapi
+uvicorn
+python-multipart

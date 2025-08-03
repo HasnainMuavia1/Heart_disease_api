@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 import shutil
 import os
 from tempfile import NamedTemporaryFile
@@ -10,6 +11,15 @@ from pathlib import Path
 from predict_ecg import predict_path
 
 app = FastAPI()
+
+# Add CORS middleware to allow cross-origin requests from the frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins for development
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 
 @app.post("/predict/")
